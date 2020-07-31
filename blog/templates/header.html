@@ -1,0 +1,20 @@
+{% load static %}
+<header class="header">
+	<div class="container">
+		<div class="header__inner">
+			<div class="header__logo">
+				<img class="header__logo-pic" src="{% static 'images/logo.png'%}" alt="kodlang" />
+
+				<a href="/" class="header__logo-link link">
+					Блог
+				</a>
+			</div>
+
+			<a href="{% url 'postNew' %}">
+				<button class="btn header__button">
+					+ Добавить статью
+				</button>
+			</a>
+		</div>
+	</div>
+</header>

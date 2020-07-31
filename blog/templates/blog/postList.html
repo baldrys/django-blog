@@ -1,0 +1,65 @@
+{% extends 'blog/base.html' %} {% block content %}{% load static %}
+<main class="main">
+	{% if posts.first %}
+	<section class="main-article">
+		<div class="container">
+			<div class="main-article__inner">
+				<div class="main-article__content">
+					<span class="main-article__lable">NEW</span>
+					<h1 class="main-article__title">
+						<a class="main-article__link-title link" href="{% url 'postDetail' pk=posts.first.pk %}">{{ posts.first.title }}</a>
+					</h1>
+					<p class="main-article__text">{{ posts.first.text |safe }}</p>
+					<a class="main-article__link-btn link" href="{% url 'postDetail' pk=posts.first.pk %}">
+						<button class="btn main-article__button" href="{% url 'postDetail' pk=posts.first.pk %}">
+							Читать
+						</button>
+					</a>
+				</div>
+				{% if posts.first.image %}
+				<img class="main-article__image" src="{{ posts.first.image.url }}" alt="kodlang" />
+				{% endif %}
+			</div>
+		</div>
+	</section>
+	{% if posts|slice:"1:"|length %}
+	<section class="articles">
+		<div class="container">
+			<div class="articles__inner">
+				<h2 class="articles__title">
+					Другие статьи
+				</h2>
+				<div class="articles__list">
+					{% for post in posts|slice:"1:" %}
+					<div class="articles__item">
+						<span class="articles__item-published-date">
+							{{ post.published_date }}
+						</span>
+						{% if post.image %}
+						<img class="articles__item-img" src="{{ post.image.url }}" alt="{{ post.title }}" />
+						{% endif %}
+						<p class="articles__item-title">
+							<a class="articles__item-link link" href="{% url 'postDetail' pk=post.pk %}">
+								{{ post.title }}
+							</a>
+						</p>
+					</div>
+					{% endfor %}
+				</div>
+			</div>
+		</div>
+	</section>
+	{% endif %} {% else %}
+	<div class="container">
+		<div class="no-articles-message">
+			<p>
+				К сожалению в блоге нету статей!
+			</p>
+			<p>
+				Добавьте пока не поздно!
+			</p>
+		</div>
+	</div>
+	{% endif %}
+</main>
+{% endblock %}

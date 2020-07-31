@@ -1,1 +1,4 @@
 /myvenv
+/media/posts_images
+*.sqlite3
+settings_local.py

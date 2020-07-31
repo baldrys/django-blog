@@ -1,0 +1,36 @@
+{% extends 'blog/base.html' %} {% block content %} {% load widget_tweaks %}{% load static %}
+<div class="acticle-create">
+	<div class="container">
+		<div class="article-create__inner">
+			<h1 class="article-create__title">
+				Добавить статью
+			</h1>
+			<form class="article-create__form" method="POST" class="post-form" enctype="multipart/form-data">
+				{% csrf_token %}
+
+				<div class="article-create__col">
+					{% render_field form.title type="text" class+="article-create__title-input" placeholder="Введите навзание статьи" %}
+					{{form.text|add_class:"article-create__text" }} {{ form.media }}
+				</div>
+				<div class="article-create__col">
+					<button type="submit" class="article-create__button btn">Опубликовать</button>
+					<div class="article-create__image">
+						<span class="article-create__image-title">
+							Загрузить изображение
+						</span>
+
+						<label id="btn-upload-img" for="id_image" class="article-create__image-button btn">Файл</label>
+						{{form.image}}
+						<div class="uploaded-img-wrapper">
+							<div class="article-create__image-close"></div>
+							<img id="id_image_show" alt="your image" />
+						</div>
+					</div>
+				</div>
+			</form>
+		</div>
+	</div>
+</div>
+
+<script src="{% static 'js/main.js' %}"></script>
+{% endblock %}
