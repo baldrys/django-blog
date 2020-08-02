@@ -9,7 +9,7 @@
 					<h1 class="main-article__title">
 						<a class="main-article__link-title link" href="{% url 'postDetail' pk=posts.first.pk %}">{{ posts.first.title }}</a>
 					</h1>
-					<p class="main-article__text">{{ posts.first.text |safe }}</p>
+					<p class="main-article__text">{{ posts.first.text|truncatechars:255|safe }}</p>
 					<a class="main-article__link-btn link" href="{% url 'postDetail' pk=posts.first.pk %}">
 						<button class="btn main-article__button" href="{% url 'postDetail' pk=posts.first.pk %}">
 							Читать
